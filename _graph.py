@@ -1,10 +1,25 @@
 from graphviz import Digraph
 
-# TODO
-# 나열된 노드들의 계층 정보를 만족하는 그래프를 그리시오
+g= Digraph('g', filename='c:/users/user/desktop/project2/project6.gv',engine='circo')
+g.attr('node',size='7.5' , style='filled', color='goldenrod2')
 
-# TODO
-# 생성한 그래프를 6가지 layout engine을 사용해 다시 그리시오
 
-# TODO
-# 위 Case에는 어떤 layout이 가장 효과적으로 graph의 정보를 표현하고 있는지 서술하시오
+g.edge('7th Edition','32V')
+g.edge('7th Edition','V7M')
+g.edge('7th Edition','Xenix')
+g.edge('7th Edition','UniPlus+')
+g.edge('8th Edition','9th Edition')
+g.edge('1 BSD','2 BSD')
+g.edge('2 BSD','2.8 BSD')
+g.edge('2.8 BSD','Ultrix-11')
+g.edge('2.8 BSD','2.9 BSD')
+g.edge('32V','3 BSD')
+g.edge('3 BSD','4 BSD')
+g.edge('4 BSD','4.1 BSD')
+g.edge('4.1 BSD','4.2 BSD')
+g.edge('4.1 BSD','2.8 BSD')
+g.edge('4.1 BSD','8th Edition')
+g.edge('4.2 BSD','4.3 BSD')
+g.edge('4.2 BSD','Ultrix-32')
+
+g.view()
