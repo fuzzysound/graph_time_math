@@ -29,7 +29,7 @@ def median_value(*args):
 
 def mode_value(*args):
     try:
-        value=map(float,mode1.get().split(','))
+        value=map(str,mode1.get().split(','))
         mode_result.set(mode(value))
     except ValueError:
         pass
@@ -188,22 +188,26 @@ def randrange2_value(*args):
 
 def choice_value(*args):
     try:
-        value = list(map(float, choice1.get().split(',')))
+        value = [i for i in choice1.get()]
         choice_result.set(random.choice(value))
     except ValueError:
         pass
 
 def shuffle_value(*args):
     try:
-        value = list(map(float, shuffle1.get().split(',')))
-        shuffle_result.set(random.shuffle(value))
+        value = list(map(str, shuffle1.get().split(',')))
+        random.shuffle(value)
+        shuffle_result.set(value)
     except ValueError:
         pass
 
 def sample_value(*args):
     try:
-        value = list(map(float, sample1.get().split(',')))
-        print(random.sample(value[0:len(value)-1],float(value[len(value)-1])))
+        value = list(map(str, sample1.get().split(',')))
+        value2=value[0:len(value)-1]
+        n=int(value[len(value)-1])
+        value3=random.sample(value2,n)
+        sample_result.set(value3)
     except ValueError:
         pass
 
@@ -435,11 +439,12 @@ Button(root,text="Shuffle",command=shuffle_value).grid(row=13,column=6)
 shuffle_result2=Label(root,textvariable=shuffle_result,font='Helvetica 20 bold').grid(row=13,column=7,padx=15)
 
 sample1=StringVar()
+sample_result=StringVar()
 
 sample_label=Label(root,text="Sample").grid(row=14,column=4,padx=10)
 sample_entry=Entry(root,width=20,textvariable=sample1).grid(row=14,column=5)
 Button(root,text="Sample",command=sample_value).grid(row=14,column=6)
-
+sample_result2=Label(root,textvariable=sample_result,font='Helvetica 20 bold').grid(row=14,column=7,padx=15)
 root.mainloop()
 # TODO
 # Tkinter module을 이용해서 아래에 있는 function들을 지원하는 직관적인 GUI를 만들어본다.
@@ -447,4 +452,3 @@ root.mainloop()
 # math module: ceil(), floor(), fabs(), factorial(), fmod(), log(), pow(), sqrt(), sin(), cos(), tan(),
 # degrees(), radians(), cosh(), sinh(), tanh()
 # random module: random(), seed(), uniform(), randint(), randrange(), choice(), shuffle(), sample()
-
